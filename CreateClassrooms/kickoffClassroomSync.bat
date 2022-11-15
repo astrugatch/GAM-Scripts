@@ -1,5 +1,8 @@
 @ECHO OFF
-REM This script kicks off the GoogleClassroom sync and saves it's output to a log
+
+ECHO ================================================================
+ECHO This script kicks off the GoogleClassroom sync and saves it's output to a log
+ECHO ================================================================
 
 SET LogFileName=gamClassroomSync_%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%
 
