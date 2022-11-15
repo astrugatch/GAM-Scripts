@@ -1,12 +1,16 @@
-REM This script adds classes found in the CreateClasses file and syncs users to those classes from the CourseStudents file
-REM IF EXIST "C:\SPF_SFTP\gclasssftp\CreateClasses.csv" GOTO _START
+ECHO ================================================================
+ECHO This script adds classes found in the CreateClasses file and syncs users to those classes from the CourseStudents file
+ECHO ================================================================
 
-REM Exit
+IF EXIST "C:\SFTP\gclasssftp\CreateClasses.csv" GOTO _START
 
-REM :_START
-REM Move all files from SFTP directory to working directory
+Exit
 
-MOVE "C:\SPF_SFTP\gclasssftp\*.*" "C:\Classroom\Source\"
+:_START
+
+ECHO Move all files from SFTP directory to working directory
+
+MOVE "C:\SFTP\gclasssftp\*.*" "C:\Classroom\Source\"
 
 cd c:/GAMADV-XTD3/
 
@@ -21,5 +25,3 @@ gam csv c:\Classroom\Source\CreateClasses.csv gam course ~Alias add teacher ~Tea
 REM SYNC with MasterList
 
 gam courses csvkmd c:\Classroom\Source\CourseStudents.csv keyfield Alias datafield Students sync students csvdata Students
-
-CALL "c:\Classroom\Scripts\SendResults.bat"
